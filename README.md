@@ -1,3 +1,40 @@
+# Introducción y Básicos de React
+
+## Creando Nuestro Primer Componente
+
+src/components/Header.js
+```javascript
+import React from "react"; // Importamos la biblioteca de react
+
+// Componente funcional
+const Header = () => {
+  return <h1>Desde el header</h1>; // retorna JSX
+};
+
+export default Header;
+```
+
+Se utiliza un componente de la siguiente forma:
+
+src/App.js
+```javascript
+import React from "react";
+import Header from "./components/Header"; // Importamos el componente
+
+function App() {
+    return (
+        <div className="App">
+            <Header></Header> // utilización
+        </div>
+    );
+}
+
+export default App;
+```
+
+
+
+___
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
