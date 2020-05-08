@@ -32,6 +32,47 @@ function App() {
 export default App;
 ```
 
+## Componentes Funcionales con Arrow Functions
+
+Una ventaja que tenemos al definir componentes funcionales con arrow funtions es que al no tener código JS antes del return, podemos omitir el return y tener un código más pequeño.
+
+```javascript
+import React from 'react';
+
+const Footer = () => (
+    <footer>
+        <p>Todos los derechos reservados &copy; </p>
+    </footer>
+);
+
+export default Footer;
+```
+
+## Fragments
+
+Si no queremos que en el navegador se nos llene de tantos divs, utilizaremos Fragments.
+
+```javascript
+function App() {
+    return (
+        <Fragment>
+            <Header></Header>
+            <Footer></Footer>
+        </Fragment>
+    );
+}
+```
+
+con Fragments en nuestro navegador, el html se vería así:
+```html
+<div id="react">
+    <h1>Tienda Virtual</h1>
+    <footer>
+        <p>Todos los derechos reservados © </p>
+    </footer>
+</div>
+```
+
 
 
 ___
