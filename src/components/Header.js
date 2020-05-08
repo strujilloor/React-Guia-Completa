@@ -1,7 +1,8 @@
 import React from "react";
 
 const Header = () => {
-  return <h1>Desde el header</h1>;
+  const title = "Tienda Virtual";
+  return <h1>{ title }</h1>; // podemos usar js en jsx mediante llaves
 };
 
 export default Header;
