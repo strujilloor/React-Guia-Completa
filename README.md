@@ -188,6 +188,24 @@ const Product = ({ product }) => {
 };
 ```
 
+## Eventos en React
+
+Los eventos en React son con camelCase
+
+```javascript
+<button type="button" onClick={ () => selectProduct(id) }>
+    Comprar
+</button>
+```
+
+```javascript
+const selectProduct = ( id ) => {
+    console.log('Comprando... ' + id);   
+}
+```
+
+> Note que cuando quedemos asignar una función a un evento, y esta función recibe parámetros, debemos utilizar arrow function como se ve en el ejemplo, si no es el caso, podemos poner el nombre de la función directamente.
+
 
 
 ___
