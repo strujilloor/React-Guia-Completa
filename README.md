@@ -113,6 +113,42 @@ const Footer = ({ date }) => (
     </footer>
 );
 ```
+## React Hook
+
+- disponibles desde la versión 16.8
+- te permiten actualizar un state, sin la necesidad de un class component
+- la cantidad de código es menor
+
+### Los Hooks se Dividen en Dos Grupos
+
+1. Básicos
+    - useState
+    - useEffect
+2. Avanzados
+    - useContext
+    - useRef
+    - useReducer
+    - useCallback
+    - userMemo
+
+### useState
+
+```javascript
+import React, { useState } from 'react';
+```
+
+```javascript
+const [ clientes, guardarClientes ] = useState([]);
+```
+
+Esta función retorna un array del cual podemos extraemos el estado actual, y la función que cambia el estado.
+
+clientes = tiene el estado actual.
+
+guardarClientes = cambia el estado.
+
+
+
 
 
 ___
