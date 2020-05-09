@@ -73,6 +73,46 @@ con Fragments en nuestro navegador, el html se vería así:
 </div>
 ```
 
+## Props
+
+Así es como normalmente fluyen los datos.
+
+Le pasamos mediante props, los siguientes valores a los componentes de Header y Footer:
+
+```javascript
+function App() {
+
+    // Obtener fecha actual
+    const year = new Date().getFullYear();
+
+    return (
+        <Fragment>
+            <Header
+                title="Tienda Virtual"
+            />
+            <Footer
+                date={ year } // pasamos la variable year al prop date
+            />
+        </Fragment>
+    );
+}
+```
+
+las props son recibidas y destructuradas de la siguiente forma:
+
+```javascript
+const Header = ({ title }) => { // destructuring los props
+  return <h1>{ title }</h1>; // podemos usar js en jsx mediante llaves
+};
+```
+
+```javascript
+const Footer = ({ date }) => (
+    <footer>
+        <p>Todos los derechos reservados &copy; { date } </p>
+    </footer>
+);
+```
 
 
 ___
