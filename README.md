@@ -141,7 +141,7 @@ import React, { useState } from 'react';
 const [ clientes, guardarClientes ] = useState([]);
 ```
 
-Esta función retorna un array del cual podemos extraemos el estado actual, y la función que cambia el estado.
+Esta función retorna un array del cual podemos extraer el estado actual, y la función que cambia el estado.
 
 clientes = tiene el estado actual.
 
