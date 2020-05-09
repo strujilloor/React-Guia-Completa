@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import Header from "./components/Header";
 import Footer from './components/Footer';
 import Product from './components/Product';
@@ -19,7 +19,10 @@ function App() {
     // Obtener fecha actual
     const year = new Date().getFullYear();
 
-    console.log( 'Carrito: ', shoppingCart ); // Por qué se ejecuta dos veces?
+    useEffect(() => {
+        console.log( 'Carrito: ', shoppingCart ); // Por qué se ejecuta dos veces?
+    }, [shoppingCart]);
+
 
     return (
         <Fragment>

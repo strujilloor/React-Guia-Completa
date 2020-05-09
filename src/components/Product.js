@@ -5,7 +5,7 @@ const Product = ({ product, shoppingCart, addProduct }) => {
     const { name, price, id } = product;
 
     const selectProduct = ( product ) => {
-        console.log( 'Comprando... ' + product );
+        console.log( 'Comprando... ' + JSON.stringify( product ) );
         addProduct( [ ...shoppingCart, product ] );
     }
 
