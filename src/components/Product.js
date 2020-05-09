@@ -1,11 +1,12 @@
 import React from 'react';
 
-const Product = ({ product }) => {
+const Product = ({ product, shoppingCart, addProduct }) => {
 
     const { name, price, id } = product;
 
-    const selectProduct = ( id ) => {
-        console.log('Comprando... ' + id);   
+    const selectProduct = ( product ) => {
+        console.log( 'Comprando... ' + product );
+        addProduct( [ ...shoppingCart, product ] );
     }
 
     return (
@@ -14,7 +15,7 @@ const Product = ({ product }) => {
             <p>${ price }</p>
             <button 
                 type="button"
-                onClick={ () => selectProduct( id ) }
+                onClick={ () => selectProduct( product ) }
             >Comprar</button>
         </div>
     );

@@ -206,7 +206,38 @@ const selectProduct = ( id ) => {
 
 > Note que cuando quedemos asignar una función a un evento, y esta función recibe parámetros, debemos utilizar arrow function como se ve en el ejemplo, si no es el caso, podemos poner el nombre de la función directamente.
 
+## Pasando una función como Prop
 
+veremos en este ejemplo como agregar productos a un carrito de compras, siendo este un estado del componente padre.
+
+Estado del componente padre:
+
+```javascript
+// Carrito de Compras
+const [ shoppingCart, addProduct ] = useState([]);
+```
+
+Pasa la función addProduct a su componente Hijo mediante props:
+
+```javascript
+<Product 
+    key={ product.id } 
+    product={ product }
+    shoppingCart={ shoppingCart } // pasamos el estado
+    addProduct={ addProduct }     // y la función que actualiza el estado
+/>
+```
+
+El componente hijo los recibe y mediante un evento que dispara la función selectProduct, actualiza el estado shoppingCart del padre
+
+```javascript
+const selectProduct = ( product ) => {
+    console.log( 'Comprando... ' + product );
+    addProduct( [ ...shoppingCart, product ] );
+}
+```
+
+> Note: que necesitamos el estado shoppingCart por que como es una lista, debemos obtener los valores anteriores del estado y agregar el nuevo valor.
 
 ___
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

@@ -13,8 +13,13 @@ function App() {
         { id: 4, name: 'Camisa Angular', price: 20  },
     ]);
 
+    // Carrito de Compras
+    const [ shoppingCart, addProduct ] = useState([]);
+
     // Obtener fecha actual
     const year = new Date().getFullYear();
+
+    console.log( 'Carrito: ', shoppingCart ); // Por qué se ejecuta dos veces?
 
     return (
         <Fragment>
@@ -27,7 +32,9 @@ function App() {
             { products.map( product => (
                 <Product 
                     key={ product.id } 
-                    product={ product } 
+                    product={ product }
+                    shoppingCart={ shoppingCart }
+                    addProduct={ addProduct }
                 />
             ))}
 
