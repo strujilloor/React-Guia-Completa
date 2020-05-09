@@ -147,7 +147,46 @@ clientes = tiene el estado actual.
 
 guardarClientes = cambia el estado.
 
+## Pintando una Lista de Productos
 
+```javascript
+// Crear lista de productos
+const [ products, setProducts ] = useState([
+    { id: 1, name: 'Camisa ReactJS', price: 50  },
+    { id: 2, name: 'Camisa NodeJs',  price: 40  },
+    { id: 3, name: 'Camisa VueJS',   price: 30  },
+    { id: 4, name: 'Camisa Angular', price: 20  },
+]);
+```
+
+```javascript
+return (
+    <h1>Lista de Productos</h1>
+
+    { products.map( product => (
+        <Product 
+            key={ product.id } 
+            product={ product } 
+        />
+    ))}
+);
+```
+
+map retorna un nueva lista, recordemos que en JSX podemos pintar listas de elementos.
+
+```javascript
+const Product = ({ product }) => {
+
+    const { name, price, id } = product;
+
+    return (
+        <div>
+            <h3>{ name }</h3>
+            <p>${ price }</p>
+        </div>
+    );
+};
+```
 
 
 

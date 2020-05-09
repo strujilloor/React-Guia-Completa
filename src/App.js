@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from "react";
 import Header from "./components/Header";
 import Footer from './components/Footer';
+import Product from './components/Product';
 
 function App() {
 
@@ -20,6 +21,16 @@ function App() {
             <Header
                 title="Tienda Virtual"
             />
+
+            <h1>Lista de Productos</h1>
+
+            { products.map( product => (
+                <Product 
+                    key={ product.id } 
+                    product={ product } 
+                />
+            ))}
+
             <Footer
                 date={ year }
             />
