@@ -239,6 +239,36 @@ const selectProduct = ( product ) => {
 
 > Note: que necesitamos el estado shoppingCart por que como es una lista, debemos obtener los valores anteriores del estado y agregar el nuevo valor.
 
+## Utilizando el operador ternario
+
+El componente shoppingCart, que muestra los productos agregados al carrito.
+
+```javascript
+const ShoppingCart = ({ shoppingCart }) => {
+    return (
+        <div className="shoppingCart">
+            <h2>Tu carrito de compras</h2>
+            {shoppingCart.length === 0 
+                ? <p>No hay elementos en el carrito</p>
+                : shoppingCart.map( product => (
+                    <Product
+                        product={ product }
+                    />
+                ))
+            }
+        </div>
+    );
+};
+```
+Si no existen productos en el carrito mostrará "No hay elementos en el carrito".
+
+
+
+
+
+
+
+
 ___
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
