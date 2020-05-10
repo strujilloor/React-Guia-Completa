@@ -262,8 +262,46 @@ const ShoppingCart = ({ shoppingCart }) => {
 ```
 Si no existen productos en el carrito mostrará "No hay elementos en el carrito".
 
+## Componente Dinámico
 
+```javascript
+const Product = ({ product, shoppingCart, addProduct, isShoppingCart }) => {
 
+    const { name, price, id } = product;
+
+    // Agregar producto al carrito
+    const selectProduct = ( product ) => {
+        console.log( 'Comprando... ' + JSON.stringify( product ) );
+        addProduct( [ ...shoppingCart, product ] );
+    }
+    
+    // Eliminar un producto del carrito
+    const deleteProduct = ( id ) => {
+        const shoppingCartWithoutProduct = shoppingCart.filter( product => product.id !== id );
+        addProduct( shoppingCartWithoutProduct );
+    }
+
+    return (
+        <div>
+            <h3>{ name }</h3>
+            <p>${ price }</p>
+            {isShoppingCart ? // si se encuentra en el componente de shoppingCart pinte un botón de eliminar
+                <button 
+                    type="button"
+                    onClick={ () => deleteProduct( product.id ) }
+                >Eliminar</button>
+                :
+                <button 
+                    type="button"
+                    onClick={ () => selectProduct( product ) }
+                >Comprar</button>
+            }
+        </div>
+    );
+};
+```
+
+De esta manera podemos reutilizar el componente Product, en multiples componentes.
 
 
 

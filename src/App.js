@@ -20,8 +20,10 @@ function App() {
     // Obtener fecha actual
     const year = new Date().getFullYear();
 
+    // Por qué se ejecuta dos veces? 
+    // debemos meterlo dentro de un useEffect para que esto no ocurra
     useEffect(() => {
-        console.log( 'Carrito: ', shoppingCart ); // Por qué se ejecuta dos veces?
+        console.log( 'Carrito: ', shoppingCart );
     }, [shoppingCart]);
 
 
@@ -38,12 +40,14 @@ function App() {
                     key={ product.id } 
                     product={ product }
                     shoppingCart={ shoppingCart }
+                    isShoppingCart={ false }
                     addProduct={ addProduct }
                 />
             ))}
             
             <ShoppingCart 
                 shoppingCart={ shoppingCart }
+                addProduct={ addProduct }
             />
 
             <Footer

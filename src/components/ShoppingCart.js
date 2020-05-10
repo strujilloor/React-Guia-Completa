@@ -2,7 +2,7 @@ import React from 'react';
 import './ShoppingCart.css';
 import Product from './Product';
 
-const ShoppingCart = ({ shoppingCart }) => {
+const ShoppingCart = ({ shoppingCart, addProduct }) => {
     return (
         <div className="shoppingCart">
             <h2>Tu carrito de compras</h2>
@@ -10,7 +10,11 @@ const ShoppingCart = ({ shoppingCart }) => {
                 ? <p>No hay elementos en el carrito</p>
                 : shoppingCart.map( product => (
                     <Product
+                        key={ product.id }
                         product={ product }
+                        shoppingCart={ shoppingCart }
+                        isShoppingCart={ true }
+                        addProduct={ addProduct }
                     />
                 ))
             }
