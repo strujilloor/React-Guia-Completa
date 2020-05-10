@@ -1,5 +1,4 @@
-import React from 'react';
-import ShoppingCart from './ShoppingCart';
+import React, { useState } from 'react';
 
 const Product = ({ product, shoppingCart, addProduct, isShoppingCart }) => {
 
@@ -11,9 +10,11 @@ const Product = ({ product, shoppingCart, addProduct, isShoppingCart }) => {
         // Encontrar si el producto ya ha sido agregado al carrito
         const existProduct = shoppingCart.find( data => data.id === product.id );
         if( existProduct ) {
-            console.log( "ERROR: producto ya ha sido agregado al carrito" );
+            const newShoppingCart = shoppingCart.filter( data => data.id !== product.id );
+            newShoppingCart.push( { ...existProduct, amount: existProduct.amount + 1 } );
+            addProduct( newShoppingCart );
         } else {
-            addProduct( [ ...shoppingCart, product ] );
+            addProduct( [ ...shoppingCart, { ...product, amount: 1 } ] );
         }
     }
     
@@ -27,11 +28,15 @@ const Product = ({ product, shoppingCart, addProduct, isShoppingCart }) => {
         <div>
             <h3>{ name }</h3>
             <p>${ price }</p>
+            
             {isShoppingCart ?
+                <>
+                <p>cantidad: { product.amount }</p>
                 <button 
                     type="button"
                     onClick={ () => deleteProduct( product.id ) }
                 >Eliminar</button>
+                </>
                 :
                 <button 
                     type="button"

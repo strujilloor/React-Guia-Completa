@@ -18,6 +18,10 @@ const ShoppingCart = ({ shoppingCart, addProduct }) => {
                     />
                 ))
             }
+            <p><b>TOTAL:</b> ${ shoppingCart.reduce(
+                (total, currentProduct) => total + (currentProduct.price * currentProduct.amount), 
+                0 
+            ) }</p>
         </div>
     );
 };
