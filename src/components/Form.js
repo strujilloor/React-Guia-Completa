@@ -11,6 +11,9 @@ const Form = () => {
         symptoms: ''
     });
 
+    // No tengas miedo de crear multiples States
+    const [error, setError] = useState(false);
+
     // Función que se ejecuta cada que el usuario escribe en un input
     const handleChange = (event) => {
         setAppointment({
@@ -26,7 +29,11 @@ const Form = () => {
     const submitAppointment = ( event ) => {
         event.preventDefault();
 
-        // Validar
+        // Validar 
+        if ( pet.trim() === '' || owner.trim() === '' || date.trim() === '' || time.trim() === '' || symptoms.trim() === '' ) { // trim() elimina los espacios en blanco
+            setError(true);
+            return;
+        }
 
         // Asignar un ID
 
@@ -38,6 +45,7 @@ const Form = () => {
     return (
         <>
         <h2>Crear Cita</h2>
+        { error ? <p className="alerta-error">Todos los campos son obligatorios</p> : null }
         <form onSubmit={ submitAppointment }>
             <label htmlFor="pet">Nombre Mascota</label>
             <input 
