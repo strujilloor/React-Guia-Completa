@@ -22,10 +22,23 @@ const Form = () => {
     // Extraer los valores
     const { pet, owner, date, time, symptoms } = appointment;
 
+    // Cuando el usuario envia el formulario
+    const submitAppointment = ( event ) => {
+        event.preventDefault();
+
+        // Validar
+
+        // Asignar un ID
+
+        // Crear Cita
+
+        // Reiniciar Form
+    }
+
     return (
         <>
         <h2>Crear Cita</h2>
-        <form>
+        <form onSubmit={ submitAppointment }>
             <label htmlFor="pet">Nombre Mascota</label>
             <input 
                 type="text"
