@@ -144,7 +144,7 @@ const submitAppointment = ( event ) => {
 
     // Validar 
     if ( pet.trim() === '' || owner.trim() === '' || date.trim() === '' || time.trim() === '' || symptoms.trim() === '' ) { // trim() elimina los espacios en blanco
-        setError(true);
+        setError(true); // <-- actualizamos el estado a true
         return;
     }
 
@@ -156,13 +156,14 @@ const submitAppointment = ( event ) => {
 }
 ```
 
-Podemos mostrar al usuario el erro de la siguiente forma:
+Podemos mostrar al usuario el error de la siguiente forma:
 
 ```javascript
 <h2>Crear Cita</h2>
 { error ? <p className="alerta-error">Todos los campos son obligatorios</p> : null }
 ```
 
+Si estado error es true, se mostrará un párrafo con el mensaje "Todos los campos son obligatorios".
 
 
 
