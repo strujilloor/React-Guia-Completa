@@ -251,6 +251,27 @@ El componente cita recibe la función, y la manda a llamar cuando se hace clic e
 >Eliminar &times;</button>
 ```
 
+## Mostrando un mensaje de forma condicional
+
+Si no se a registrado ninguna cita muestre como titulo, No hay citas, en caso contrario, Administra tus citas:
+
+```javascript
+function App() {
+  // ...
+
+  // Mensaje Condicional
+  const title = appointments.length === 0 ? 'No hay citas' : 'Administra tus citas';
+
+  return (
+    <>
+        <div className="one-half column">
+            <h2>{ title }</h2> 
+        </div>
+    </>
+  );
+}
+```
+
 
 
 
