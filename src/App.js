@@ -4,12 +4,18 @@ import Appointment from './components/Appointment';
 
 function App() {
 
+  // Citas en Local Storage
+  let initialAppointments = JSON.parse( localStorage.getItem('appointments') );
+  if ( !initialAppointments ) {
+      initialAppointments = [];
+  }
+
   // Arreglo de Citas
-  const [appointments, setAppointments] = useState([]);
+  const [appointments, setAppointments] = useState( initialAppointments );
 
   // Use Effect para realizar ciertas operaciones cuando el State cambie
   useEffect( () => {
-      console.log('Componente listo, o algo cambió en las citas');
+      localStorage.setItem( 'appointments', JSON.stringify( appointments ) );
   }, [appointments] )
 
   // Función que tome las citas actuales y agregue la nueva

@@ -297,6 +297,57 @@ useEffect( () => {
 }, [appointments] )
 ```
 
+## Agregando Local Storage
+
+Hay que tener estos conceptos claros. **useState** hace dos renders del componente. en el primero inicializa el estado y en el segundo render, lee el estado ignorando el argumento. 
+
+Existen unas reglas para utilizar los hooks: https://es.reactjs.org/docs/hooks-rules.html
+
+```javascript
+function App() {
+
+    // Citas en Local Storage
+    let initialAppointments = JSON.parse( localStorage.getItem('appointments') ); // nos traemos las citas del storage
+    if ( !initialAppointments ) {
+        initialAppointments = []; // si no hay citas, inicialice con un array vacío
+    }
+
+    // Arreglo de Citas
+    const [appointments, setAppointments] = useState( initialAppointments ); // inicializamos el estado según el valor en el storage
+
+    // Use Effect para realizar ciertas operaciones cuando el State cambie
+    useEffect( () => {
+        if ( initialAppointments ) {
+            localStorage.setItem( 'appointments', JSON.stringify( appointments ) );
+        } else {
+            localStorage.setItem( 'appointments', JSON.stringify( [] ) );
+        }
+    }, [appointments] )
+```
+
+Explicación: necesitamos captura las citas guardadas en el local storage al inicio de la aplicación, para pasarlas como valor inicial al estado citas. (solo se puede hacer como en el ejemplo debido a que no se puede utilizar useEffect por como funcionan los hooks) (según entiendo los hooks, ambos en este caso, generán dos renders del componente, uno para inicializar el estado y el efecto y otro para leerlo o algo así).
+
+Entonces cuando inicia la aplicación nos traemos las citas guardadas en el local storage para inicializar el estado con esas citas. si no hoy citas, entonces inicialice el estado como un array vacío.
+
+useEffect: cuando el estado de citas cambie, las guardamos en el local storage. Si no hay citas iniciales en el storage, almacene un array vacío en el storage.
+
+el if para initialAppointments en [] es por que el useEffect no se ejecuta inmediatamente, por lo que si igual estamos haciendo que exista un appointments en el local storage vacío. no sucederá de inmediato generándo errores, al inicializar el estado y demás.
+
+> Note: se que este tema puede resultar confuso, pero si necesitas hacer justo esto en un aplicación simple, has exactamente lo del ejemplo superior. no te compliques la vida.
+
+
+Actualización:
+veo innecesario el condicional dentro del useEffect, por lo que lo retiré:
+```javascript
+// Use Effect para realizar ciertas operaciones cuando el State cambie
+useEffect( () => {
+    localStorage.setItem( 'appointments', JSON.stringify( appointments ) );
+}, [appointments] )
+```
+
+
+
+
 
 
 ___
