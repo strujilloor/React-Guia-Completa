@@ -372,7 +372,23 @@ Appointment.propTypes = {
 }
 ```
 
+## Deployment del Proyecto
 
+```
+npm run build
+
+yarn build
+```
+
+Para generar el build de producción.
+
+Para realizar el deployment vamos a utilizar netlify.
+
+Solo iniciamos sesión, y arrastramos la carpeta build del proyecto.
+
+Todo queda listo cuando veamos el link.
+
+https://administrador-pacientes-01.netlify.app/
 
 
 ___
