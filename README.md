@@ -217,7 +217,39 @@ setAppointment({
 });
 ```
 
+## Eliminar Citas del State
 
+El componente App, que contiene el estado de las citas, tendrá una función que eliminará la cita:
+
+```javascript
+// Función que elimina una cita por su id
+const deleteAppointment = ( id ) => {
+// me trae un nuevo array con todas las citas menos la del id especificado:
+const newAppointments = appointments.filter( appointment => appointment.id !== id );
+setAppointments( newAppointments );
+}
+```
+
+Le pasamos por props la función a el Componente cita:
+
+```javascript
+{ appointments.map( ( appointment ) => (
+    <Appointment
+        key={ appointment.id }
+        appointment={ appointment }
+        deleteAppointment={ deleteAppointment } // <--
+    />
+))}
+```
+
+El componente cita recibe la función, y la manda a llamar cuando se hace clic en el botón pasandole el id de la cita:
+
+```javascript
+<button
+    className="button eliminar u-full-width"
+    onClick={ () => deleteAppointment( appointment.id ) } // <--
+>Eliminar &times;</button>
+```
 
 
 

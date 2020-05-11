@@ -12,6 +12,13 @@ function App() {
     setAppointments([ ...appointments, appointment ]);
   }
 
+  // Función que elimina una cita por su id
+  const deleteAppointment = ( id ) => {
+    // me trae un nuevo array con todas las citas menos la del id especificado:
+    const newAppointments = appointments.filter( appointment => appointment.id !== id );
+    setAppointments( newAppointments );
+  }
+
   return (
     <>
     <h1>Administrador de Pacientes</h1>
@@ -28,6 +35,7 @@ function App() {
             <Appointment
               key={ appointment.id }
               appointment={ appointment }
+              deleteAppointment={ deleteAppointment }
             />
           ) ) }
         </div>
