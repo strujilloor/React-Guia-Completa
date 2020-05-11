@@ -224,9 +224,9 @@ El componente App, que contiene el estado de las citas, tendrá una función que
 ```javascript
 // Función que elimina una cita por su id
 const deleteAppointment = ( id ) => {
-// me trae un nuevo array con todas las citas menos la del id especificado:
-const newAppointments = appointments.filter( appointment => appointment.id !== id );
-setAppointments( newAppointments );
+    // me trae un nuevo array con todas las citas menos la del id especificado:
+    const newAppointments = appointments.filter( appointment => appointment.id !== id );
+    setAppointments( newAppointments );
 }
 ```
 
