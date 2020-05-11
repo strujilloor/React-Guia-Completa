@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {v4 as uuidv4} from 'uuid';
 
 const Form = () => {
 
@@ -34,8 +35,13 @@ const Form = () => {
             setError(true);
             return;
         }
+        // Eliminar el mansaje previo
+        setError(false);
 
         // Asignar un ID
+        appointment.id = uuidv4();
+        console.log(appointment);
+
 
         // Crear Cita
 
