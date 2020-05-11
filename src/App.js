@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Form from './components/Form';
 import Appointment from './components/Appointment';
 
@@ -6,6 +6,11 @@ function App() {
 
   // Arreglo de Citas
   const [appointments, setAppointments] = useState([]);
+
+  // Use Effect para realizar ciertas operaciones cuando el State cambie
+  useEffect( () => {
+      console.log('Componente listo, o algo cambió en las citas');
+  }, [appointments] )
 
   // Función que tome las citas actuales y agregue la nueva
   const createAppointment = ( appointment ) => {

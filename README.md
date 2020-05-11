@@ -272,6 +272,30 @@ function App() {
 }
 ```
 
+## El hook useEffect
+
+Se ejecuta cuando el componente esta listo, pero también cuando hay cambios en el componente (esto se define mediante el segundo parámetros).
+
+Para decirle que solo se ejecute una vez (osea solo cuando se monta el componente) siempre tienes que pasarle un arreglo vacio, por que si haces una consulta a una API, se va a ciclar.
+```javascript
+// Use Effect para realizar ciertas operaciones cuando el State cambie
+useEffect( () => {
+    console.log('El componente se montó');
+}, [] )
+```
+
+Es similar a component did mount o component did update en una misma función.
+
+Tu aplicación va a estar pendiente de uevos cambios que puedan suceder en la ejecución y reaccionar a ellos.
+
+Lo que queremos es colocar nuevas citas en el local Storage cada vez que hallan nuevas citas, o se eliminen:
+
+```javascript
+// Use Effect para realizar ciertas operaciones cuando el State cambie
+useEffect( () => {
+    console.log('Componente listo, o algo cambió en las citas');
+}, [appointments] )
+```
 
 
 
