@@ -9,7 +9,7 @@ const Appointment = ({ appointment, deleteAppointment }) => {
         <div className="cita">
             <p>Mascota: | <span>{ pet }</span></p>
             <p>Dueño: | <span>{ owner }</span></p>
-            <p>Fecha: | <span>{ date }</span></p>
+            <p>Fecha: | <span>{ new Date(date).toLocaleString('es', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) }</span></p>
             <p>Hora: | <span>{ time }</span></p>
             <p>Síntomas: | <span>{ symptoms }</span></p>
 
