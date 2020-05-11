@@ -345,7 +345,32 @@ useEffect( () => {
 }, [appointments] )
 ```
 
+## Documentando con PropTypes
 
+se define el tipo, func para función, Object para objeto, etc.
+
+También podemos definir si es obligatorio o no mediante isRequired.
+
+```javascript
+import PropTypes from 'prop-types';
+
+const Form = ( { createAppointment } ) => {...}
+
+Form.propTypes = {
+    createAppointment: PropTypes.func.isRequired
+}
+```
+
+```javascript
+import PropTypes from 'prop-types';
+
+const Appointment = ({ appointment, deleteAppointment }) => {...}
+
+Appointment.propTypes = {
+    appointment: PropTypes.object.isRequired,
+    deleteAppointment: PropTypes.func.isRequired
+}
+```
 
 
 

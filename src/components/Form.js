@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {v4 as uuidv4} from 'uuid';
+import PropTypes from 'prop-types';
 
 const Form = ( { createAppointment } ) => {
 
@@ -12,7 +13,7 @@ const Form = ( { createAppointment } ) => {
         symptoms: ''
     });
 
-    // No tengas miedo de crear multiples States
+    // No tengas miedo de crear múltiples States
     const [error, setError] = useState(false);
 
     // Función que se ejecuta cada que el usuario escribe en un input
@@ -35,7 +36,7 @@ const Form = ( { createAppointment } ) => {
             setError(true);
             return;
         }
-        // Eliminar el mansaje previo
+        // Eliminar el mensaje previo
         setError(false);
 
         // Asignar un ID
@@ -109,5 +110,9 @@ const Form = ( { createAppointment } ) => {
         </>
     );
 };
+
+Form.propTypes = {
+    createAppointment: PropTypes.func.isRequired
+}
 
 export default Form;
