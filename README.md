@@ -253,7 +253,7 @@ El componente cita recibe la función, y la manda a llamar cuando se hace clic e
 
 ## Mostrando un mensaje de forma condicional
 
-Si no se a registrado ninguna cita muestre como titulo, No hay citas, en caso contrario, Administra tus citas:
+Si no se ha registrado ninguna cita muestre como título, No hay citas, en caso contrario, Administra tus citas:
 
 ```javascript
 function App() {
