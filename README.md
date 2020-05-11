@@ -166,8 +166,56 @@ Podemos mostrar al usuario el error de la siguiente forma:
 Si estado error es true, se mostrará un párrafo con el mensaje "Todos los campos son obligatorios".
 
 
+## Creando las Citas
 
+nuetra app tendrá un state citas, y una función que cree la cita:
 
+```javascript
+function App() {
+
+  // Arreglo de Citas
+  const [appointments, setAppointments] = useState([]);
+
+  // Función que tome las citas actuales y agregue la nueva
+  const createAppointment = ( appointment ) => {
+    setAppointments([ ...appointments, appointment ]);
+  }
+```
+
+y le pasaremos esta función al componente Form:
+
+```javascript
+<Form 
+    createAppointment={ createAppointment }
+/>
+```
+
+Form recibe está función y la manda a llamar cuando se ejecuta el evento submit submitAppointment:
+
+```javascript
+// Asignar un ID
+const id = uuidv4();
+
+// Crear Cita
+createAppointment({ ...appointment, id });
+```
+
+> Note: esto del id no es necesario en un proyecto real, por que la DB que utilicemos generará automaticamente el id.
+
+## Reiniciar Formulario
+
+Básicamente el formulario se reinicia actualizando el estado que contiene los campos de este.
+
+```javascript
+// Reiniciar Form
+setAppointment({
+    pet: '',
+    owner:'',
+    date: '',
+    time: '',
+    symptoms: ''
+});
+```
 
 
 
