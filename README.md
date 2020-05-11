@@ -110,14 +110,14 @@ const { pet, owner, date, time, symptoms } = appointment; // <-- Object Destruct
 // ...lo mismo para todos los demás campos del formulario
 ```
 
-## Evento para leer cuando el usuario envie el formulario
+## Evento para leer cuando el usuario envíe el formulario
 
 ```javascript
 <form onSubmit={ submitAppointment }>
 ```
 
 ```javascript
-// Cuando el usuario envia el formulario
+// Cuando el usuario enviá el formulario
 const submitAppointment = ( event ) => {
     event.preventDefault(); // <-- prevenir que recargue la página
 
@@ -134,7 +134,7 @@ const submitAppointment = ( event ) => {
 ## Validación de formularios en React
 
 ```javascript
-// No tengas miedo de crear multiples States
+// No tengas miedo de crear múltiples States
 const [error, setError] = useState(false);
 ```
 
@@ -168,7 +168,7 @@ Si estado error es true, se mostrará un párrafo con el mensaje "Todos los camp
 
 ## Creando las Citas
 
-nuetra app tendrá un state citas, y una función que cree la cita:
+nuestra app tendrá un state citas, y una función que cree la cita:
 
 ```javascript
 function App() {
@@ -200,7 +200,7 @@ const id = uuidv4();
 createAppointment({ ...appointment, id });
 ```
 
-> Note: esto del id no es necesario en un proyecto real, por que la DB que utilicemos generará automaticamente el id.
+> Note: esto del id no es necesario en un proyecto real, por que la DB que utilicemos generará automáticamente el id.
 
 ## Reiniciar Formulario
 
@@ -242,7 +242,7 @@ Le pasamos por props la función a el Componente cita:
 ))}
 ```
 
-El componente cita recibe la función, y la manda a llamar cuando se hace clic en el botón pasandole el id de la cita:
+El componente cita recibe la función, y la manda a llamar cuando se hace clic en el botón pasando le el id de la cita:
 
 ```javascript
 <button
@@ -276,7 +276,7 @@ function App() {
 
 Se ejecuta cuando el componente esta listo, pero también cuando hay cambios en el componente (esto se define mediante el segundo parámetros).
 
-Para decirle que solo se ejecute una vez (osea solo cuando se monta el componente) siempre tienes que pasarle un arreglo vacio, por que si haces una consulta a una API, se va a ciclar.
+Para decirle que solo se ejecute una vez (osea solo cuando se monta el componente) siempre tienes que pasar le un arreglo vacío, por que si haces una consulta a una API, se va a ciclar.
 ```javascript
 // Use Effect para realizar ciertas operaciones cuando el State cambie
 useEffect( () => {
@@ -284,9 +284,9 @@ useEffect( () => {
 }, [] )
 ```
 
-Es similar a component did mount o component did update en una misma función.
+Es similar a component did mount o component did update en una misma función. how can i
 
-Tu aplicación va a estar pendiente de uevos cambios que puedan suceder en la ejecución y reaccionar a ellos.
+Tu aplicación va a estar pendiente de nuevos cambios que puedan suceder en la ejecución y reaccionar a ellos.
 
 Lo que queremos es colocar nuevas citas en el local Storage cada vez que hallan nuevas citas, o se eliminen:
 
