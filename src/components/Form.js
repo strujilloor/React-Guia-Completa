@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {v4 as uuidv4} from 'uuid';
 
-const Form = () => {
+const Form = ( { createAppointment } ) => {
 
     // Crear State de Citas
     const [appointment, setAppointment] = useState({
@@ -39,11 +39,10 @@ const Form = () => {
         setError(false);
 
         // Asignar un ID
-        appointment.id = uuidv4();
-        console.log(appointment);
-
+        const id = uuidv4();
 
         // Crear Cita
+        createAppointment({ ...appointment, id });
 
         // Reiniciar Form
     }
