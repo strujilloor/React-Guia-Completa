@@ -45,6 +45,13 @@ const Form = ( { createAppointment } ) => {
         createAppointment({ ...appointment, id });
 
         // Reiniciar Form
+        setAppointment({
+            pet: '',
+            owner:'',
+            date: '',
+            time: '',
+            symptoms: ''
+        });
     }
 
     return (
