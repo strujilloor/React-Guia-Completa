@@ -8,6 +8,15 @@ function App() {
   const [budget, setBudget] = useState(0);
   const [remaining, setRemaining] = useState(0);
   const [showquestion, setShowquestion] = useState(true);
+  const [expenditures, setExpenditures] = useState([]);
+
+  // Cuando agreguemos un nuevo gasto
+  const addNewExpenditure = ( expenditure ) => {
+      setExpenditures([
+          ...expenditures,
+          expenditure
+      ])
+  }
 
   return (
     <div className="container">
@@ -24,7 +33,9 @@ function App() {
           : 
             <div className="row">
               <div className="one-half column">
-                <Form />
+                <Form 
+                  addNewExpenditure={ addNewExpenditure }
+                />
               </div>
               <div className="one-half column">
                 2
