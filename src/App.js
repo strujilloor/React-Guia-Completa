@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Question from './components/Question';
 
 function App() {
+
+  // State
+  const [budget, setBudget] = useState(0);
+  const [remaining, setRemaining] = useState(0);
 
   return (
     <div className="container">
@@ -9,7 +13,10 @@ function App() {
         <h1>Gasto Semanal</h1>
 
         <div className="contenido-principal contenido">
-          <Question />
+          <Question 
+            saveBudget={ setBudget }
+            saveRemaining={ setRemaining }
+          />
         </div>
       </header>
     </div>
