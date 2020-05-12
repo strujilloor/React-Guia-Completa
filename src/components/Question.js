@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Error from './Error';
 
-const Question = ({ saveBudget, saveRemaining }) => {
+const Question = ({ saveBudget, saveRemaining, updateShowQuestion }) => {
 
     // Definir el State
     const [amount, setAmount] = useState(0);
@@ -26,6 +26,7 @@ const Question = ({ saveBudget, saveRemaining }) => {
         setError( false );
         saveBudget( amount );
         saveRemaining( amount );
+        updateShowQuestion( false );
     }
     
     return (

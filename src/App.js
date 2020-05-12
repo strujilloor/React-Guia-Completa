@@ -7,6 +7,7 @@ function App() {
   // State
   const [budget, setBudget] = useState(0);
   const [remaining, setRemaining] = useState(0);
+  const [showquestion, setShowquestion] = useState(true);
 
   return (
     <div className="container">
@@ -14,19 +15,22 @@ function App() {
         <h1>Gasto Semanal</h1>
 
         <div className="contenido-principal contenido">
-          <Question 
-            saveBudget={ setBudget }
-            saveRemaining={ setRemaining }
-          />
-
-          <div className="row">
-            <div className="one-half column">
-              <Form />
+          { showquestion ?
+            <Question 
+              saveBudget={ setBudget }
+              saveRemaining={ setRemaining }
+              updateShowQuestion={ setShowquestion }
+            /> 
+          : 
+            <div className="row">
+              <div className="one-half column">
+                <Form />
+              </div>
+              <div className="one-half column">
+                2
+              </div>
             </div>
-            <div className="one-half column">
-              2
-            </div>
-          </div>
+          }
         </div>
       </header>
     </div>

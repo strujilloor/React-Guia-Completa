@@ -1,3 +1,69 @@
+## Carga condicional de componentes
+
+Nuestra aplicación debe tener un estado booleano que vendrá siendo el encargado de pintar un componente u otro.
+
+Ejemplo:
+```javascript
+// State
+const [showquestion, setShowquestion] = useState(true);
+```
+
+La función encargada de actualizar el estado debe ser mandada al componente que se desea pintar o no mediante sus props.
+
+Ejemplo:
+```javascript
+<Question 
+    saveBudget={ setBudget }
+    saveRemaining={ setRemaining }
+    updateShowQuestion={ setShowquestion } // <--
+/> 
+```
+
+El componente recibe la función y la manda a llamar después de algún tipo de proceso, cambiando su valor.
+
+Ejemplo:
+```javascript
+const Question = ({ saveBudget, saveRemaining, updateShowQuestion  }) => {
+    //...
+
+    // Función que lee el presupuesto
+    const defineBudget = (event) => {
+        // ...
+        updateShowQuestion( false ); // <--
+    }
+    // ...
+}
+```
+Utilizando nuestro operador ternario, definimos si se debe o no pintar el componente, y cuando no, que pinte otra cosa.
+
+Ejemplo:
+```javascript
+<div className="contenido-principal contenido">
+    { showquestion ? // operador ternario
+        <Question // <-- pinte esto
+            saveBudget={ setBudget }
+            saveRemaining={ setRemaining }
+            updateShowQuestion={ setShowquestion }
+        /> 
+    :  // <-- o pinte esto otro
+        <div className="row"> 
+            <div className="one-half column">
+                <Form />
+            </div>
+            <div className="one-half column">
+                2
+            </div>
+        </div>
+    }
+</div>
+```
+
+
+
+
+
+
+___
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
