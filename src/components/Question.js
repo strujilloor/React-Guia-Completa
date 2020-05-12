@@ -4,6 +4,7 @@ const Question = () => {
 
     // Definir el State
     const [amount, setAmount] = useState(0);
+    const [error, setError] = useState(false);
 
     // Función que lee el presupuesto
     const defineBudget = (event) => {
@@ -15,14 +16,21 @@ const Question = () => {
         event.preventDefault();
 
         // Validar
+        if ( amount < 1 || isNaN( amount ) ) {
+            setError( true )
+            return;
+        }
 
         // si se pasa la validación
+        setError( false );
 
     }
     
     return (
         <>
             <h2>Coloca tu presupuesto</h2>
+
+            { error ? : null }
 
             <form
                 onSubmit={ addBudget }
