@@ -58,8 +58,72 @@ Ejemplo:
 </div>
 ```
 
+## Restando del presupuesto al añadir un gasto (useEffect)
 
+Podemos utilizar de una manera muy interesante useEffect para cuando el gasto se guarde, almacenarlo en el array de gastos y a su vez, ir restando el gasto del presupuesto actual, para almacenar el restante.
 
+```javascript
+function App() {
+
+    // State
+    const [budget, setBudget] = useState(0); // Presupuesto
+    const [remaining, setRemaining] = useState(0); // Restante
+    const [showquestion, setShowquestion] = useState(true);
+    const [expenditures, setExpenditures] = useState([]); // Gastos
+    const [expenditure, saveExpenditure] = useState({}); // Gasto
+    const [createexpenditure, saveCreateExpenditure] = useState(false);
+
+    // UseEffect que actualiza el restante
+    useEffect(() => {
+        // Note: necesitamos este estado y esta condicional para que no se cree un gasto al iniciar la app (recuerda que useEffect también se ejecuta al iniciar la app)
+        if( createexpenditure ) {
+
+            // Agrega el nuevo gasto
+            setExpenditures([
+                ...expenditures,
+                expenditure
+            ]);
+
+            // Resta del presupuesto actual
+            const remainingBudget = remaining - expenditure.amount; // Restante - Cantidad del Gasto
+            setRemaining( remainingBudget );
+
+            // Resetear a false
+            saveCreateExpenditure( false );
+        }
+    }, [ expenditure ]);
+
+```
+
+Entonces con el useEffect podemos ahorrarnos varias funciones, que serían: 
+
+- actualizar el array de Gastos
+- actualizar el valor Restante, del presupuesto (al haber un gasto)
+
+El Estado Crear Gasto ( createexpenditure ) es necesario debido a que useEffect también se ejecuta cuando se inicia la aplicación, entonces podemos controlar cuando se almacenan los gastos con esta propiedad, la cual enviamos al componente Form para que la active cuando se genere un gasto:
+
+```javascript
+<Form 
+    saveExpenditure={ saveExpenditure }
+    saveCreateExpenditure={ saveCreateExpenditure }
+/>
+```
+
+```javascript
+const Form = ({ saveExpenditure, saveCreateExpenditure }) => {
+    // ...
+    // Cuando el usuario agrega un gasto
+    const addExpenditure = ( event ) => {
+
+        // ...
+
+        // Pasar el gasto al componente principal 
+        saveExpenditure( newExpenditure );
+        saveCreateExpenditure( true ); // <--
+
+        // ...
+    }
+```
 
 
 

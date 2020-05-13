@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Question from './components/Question';
 import Form from './components/Form';
 import List from './components/List';
@@ -7,18 +7,31 @@ import ControlBudget from './components/ControlBudget';
 function App() {
 
   // State
-  const [budget, setBudget] = useState(0);
-  const [remaining, setRemaining] = useState(0);
+  const [budget, setBudget] = useState(0); // Presupuesto
+  const [remaining, setRemaining] = useState(0); // Restante
   const [showquestion, setShowquestion] = useState(true);
-  const [expenditures, setExpenditures] = useState([]);
+  const [expenditures, setExpenditures] = useState([]); // Gastos
+  const [expenditure, saveExpenditure] = useState({}); // Gasto
+  const [createexpenditure, saveCreateExpenditure] = useState(false);
 
-  // Cuando agreguemos un nuevo gasto
-  const addNewExpenditure = ( expenditure ) => {
-      setExpenditures([
-          ...expenditures,
-          expenditure
-      ])
-  }
+  // UseEffect que actualiza el restante
+  useEffect(() => {
+      if( createexpenditure ) { // necesitamos este estado y esta condicional para que no se cree un gasto al iniciar la app (recuerda que useEffect también se ejecuta al iniciar la app)
+
+          // Agrega el nuevo gasto
+          setExpenditures([
+              ...expenditures,
+              expenditure
+          ]);
+
+          // Resta del presupuesto actual
+          const remainingBudget = remaining - expenditure.amount;
+          setRemaining( remainingBudget );
+
+          // Resetear a false
+          saveCreateExpenditure( false );
+      }
+  }, [ expenditure ]);
 
   return (
     <div className="container">
@@ -36,7 +49,8 @@ function App() {
             <div className="row">
               <div className="one-half column">
                 <Form 
-                  addNewExpenditure={ addNewExpenditure }
+                  saveExpenditure={ saveExpenditure }
+                  saveCreateExpenditure={ saveCreateExpenditure }
                 />
               </div>
               <div className="one-half column">
