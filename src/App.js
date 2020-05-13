@@ -31,7 +31,7 @@ function App() {
           // Resetear a false
           saveCreateExpenditure( false );
       }
-  }, [ expenditure ]);
+  }, [ expenditure, createexpenditure, expenditures, remaining ]);
 
   return (
     <div className="container">
