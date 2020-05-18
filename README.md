@@ -1,3 +1,53 @@
+# Redux
+
+## Qué es Redux
+
+- Redux te permitirá manejar el State de tus aplicaciones más fácil conforme van creciendo.
+
+- Te ayuda a manejar los datos conforme las acciones realizadas por el usuario.
+
+## Características de Redux
+
+- Solo se tiene un State principal.
+
+- El State cambia de acuerdo a lo que sucede en la Interfaz de Usuario.
+
+- Solo ciertas acciones van a cambiar el State
+
+- El usuario es el que utiliza estas acciones y cambia el State
+
+## Cuando Utilizar Redux
+
+Si tu aplicación es sencilla y pequeña no necesitas Redux, Utiliza Hooks o Context. 
+
+Si tu proyecto es grande y será mantenido por varias personas, Redux será de gran ayuda. 
+
+## Mitos sobre Redux
+
+Tu aplicación será más rápida.
+Redux solo existe en React.
+Debo utilizarlo en cada proyecto.
+
+## Terminología de Redux
+
+STORE contiene el STATE ( 1 por aplicación )
+
+DISPATCH ejecuta la acción que actualizará el STATE
+
+ACTION Objetos JS, Tienen un tipo y un payload (Datos que van a modificar el STATE)
+
+SUBSCRIBE similar a un event listener para el STATE
+
+REDUCERS Funciones que saben que hacer con las acciones y el payload
+
+
+
+
+
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
