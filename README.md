@@ -106,6 +106,18 @@ y listo ya lo tenemos corriendo en nuestro puerto 4000.
 
 Soporta PUT, GET, POST etc. como una API Real!.
 
+## Configurar REDUX
+
+```
+npm i react-redux
+npm i redux
+npm i redux-thunk
+```
+
+redux es la librería como tal de Redux, react-redux es la que tiene funciones para conectar nuestra app de create react app con redux. y redux-thunk es una forma de utilizar funciones asíncronas en redux.
+
+
+
 
 ___
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
