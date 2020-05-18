@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 
 // Actions de Redux
@@ -6,22 +6,32 @@ import { crearNuevoProductoAction } from '../actions/productoActions';
 
 const NewProduct = () => {
 
+    // State del componente
+    const [ name, saveName ] = useState('');
+    const [ price, savePrice ] = useState(0);
+
     // utilizar use dispatch y te retorna una función
     const dispatch = useDispatch();
 
     // mandar llamar el action de productoAction
-    const agregarProducto = () => dispatch( crearNuevoProductoAction() );
+    const agregarProducto = ( product ) => dispatch( crearNuevoProductoAction( product ) );
 
     // Cuando el usuario haga submit
     const submitNuevoProducto = ( event ) => {
         event.preventDefault();
 
         // Validar formulario
+        if ( name.trim() === '' || price <= 0 || isNaN( price ) ) {
+            return;
+        }
 
         // Si no hay errores
 
         // Crear el nuevo producto
-        agregarProducto();
+        agregarProducto({
+            name,
+            price
+        });
     }
 
     return (
@@ -41,6 +51,8 @@ const NewProduct = () => {
                                     className="form-control"
                                     placeholder="Nombre Producto"
                                     name="name"
+                                    value={ name }
+                                    onChange={ e => saveName( e.target.value ) }
                                 />
                             </div>
 
@@ -51,6 +63,8 @@ const NewProduct = () => {
                                     className="form-control"
                                     placeholder="Precio Producto"
                                     name="price"
+                                    value={ price }
+                                    onChange={ e => savePrice( parseInt(e.target.value) ) }
                                 />
                             </div>
 
