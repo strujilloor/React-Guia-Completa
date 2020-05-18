@@ -41,13 +41,73 @@ SUBSCRIBE similar a un event listener para el STATE
 REDUCERS Funciones que saben que hacer con las acciones y el payload
 
 
+## Creando un Fake Server con JSON Server
+
+https://github.com/typicode/json-server
+
+En nuestra terminal como administrador, corremos el siguiente comando:
+
+```
+npm install -g json-server
+```
+
+En la raiz del proyecto agregamos nuestra Fake DB como un archivo JSON: ejemplo:
+
+db.json:
+```
+{
+    "productos": [
+        {
+            "id": 1,
+            "nombre": "Jugo de Zanahoria",
+            "precio": "31111"
+        },
+        {
+            "id": 2,
+            "nombre": "Jugo de Naranja",
+            "precio": "1"
+        },
+        {
+            "nombre": "Jugo de Naranja",
+            "precio": "300",
+            "id": 3
+        },
+        {
+            "nombre": "Rib Eye 800g",
+            "precio": "200",
+            "id": 4
+        },
+        {
+            "nombre": "Jugo de Fresa",
+            "precio": "200",
+            "id": 5
+        }
+    ]
+}
+```
+
+En la terminal de VSCode ejecutamos el siguiente comando:
+
+```
+json-server db.json --port 4000
+```
+
+y nos aparecerá:
+
+```
+  Resources
+  http://localhost:4000/productos
+
+  Home
+  http://localhost:4000
+```
+
+y listo ya lo tenemos corriendo en nuestro puerto 4000.
+
+Soporta PUT, GET, POST etc. como una API Real!.
 
 
-
-
-
-
-
+___
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
