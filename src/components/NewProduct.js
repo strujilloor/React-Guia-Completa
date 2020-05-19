@@ -13,6 +13,10 @@ const NewProduct = () => {
     // utilizar use dispatch y te retorna una función
     const dispatch = useDispatch();
 
+    // Acceder al State del Store
+    const cargando = useSelector( state => state.productos.loading );
+    const error = useSelector( state => state.productos.error );
+
     // mandar llamar el action de productoAction
     const agregarProducto = ( product ) => dispatch( crearNuevoProductoAction( product ) );
 
@@ -64,15 +68,29 @@ const NewProduct = () => {
                                     placeholder="Precio Producto"
                                     name="price"
                                     value={ price }
-                                    onChange={ e => savePrice( parseInt(e.target.value) ) }
+                                    onChange={ e => savePrice( isNaN(parseInt(e.target.value)) ? e.target.value : parseInt(e.target.value) ) }
                                 />
                             </div>
 
                             <button
                                 type="submit"
                                 className="btn btn-primary font-weight-bold text-uppercase d-block w-100"
-                            >Agregar</button>
+                            >
+                                { cargando 
+                                ?
+                                    <>
+                                    <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                    Cargando...
+                                    </> 
+                                :
+                                    'Agregar'
+                                }
+                            </button>
                         </form>
+
+                        { cargando ? <p>Cargando...</p> : null }
+                        
+                        { error ? <p className="alert alert-danger p2 mt-4 text-center">Hubo un error</p> : null }
                     </div>
                 </div>
             </div>
