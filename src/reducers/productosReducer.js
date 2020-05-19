@@ -18,14 +18,21 @@ export default function ( state = initialState, action ) {
         case AGREGAR_PRODUCTO: 
             return { // imagina este return como un setState
                 ...state,
-                loading: action.payload
+                loading: action.payload // Comienza a cargar la acción de agregar producto
             }
 
         case AGREGAR_PRODUCTO_EXITO: 
             return {
                 ...state,
-                loading: false,
-                productos: [ ...state.productos, action.payload ]
+                loading: false, // termina la acción de agregar producto
+                productos: [ ...state.productos, action.payload ] // agrega el producto que viene de la acción a la lista de productos
+            }
+        
+        case AGREGAR_PRODUCTO_ERROR:
+            return {
+                ...state,
+                loading: false, // termina la acción de agregar producto
+                error: action.payload
             }
 
         default:
