@@ -11,19 +11,19 @@
       "precio": "1"
     },
     {
+      "id": 3,
       "nombre": "Jugo de Naranja",
-      "precio": "300",
-      "id": 3
+      "precio": "300"
     },
     {
+      "id": 4,
       "nombre": "Rib Eye 800g",
-      "precio": "200",
-      "id": 4
+      "precio": "200"
     },
     {
+      "id": 5,
       "nombre": "Jugo de Fresa",
-      "precio": "200",
-      "id": 5
+      "precio": "200"
     }
   ]
 }

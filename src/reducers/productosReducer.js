@@ -32,11 +32,20 @@ export default function ( state = initialState, action ) {
                 productos: [ ...state.productos, action.payload ] // agrega el producto que viene de la acción a la lista de productos
             }
         
+        case DESCARGA_PRODUCTOS_ERROR:
         case AGREGAR_PRODUCTO_ERROR:
             return {
                 ...state,
                 loading: false, // termina la acción de agregar producto
                 error: action.payload
+            }
+
+        case DESCARGA_PRODUCTOS_EXITO:
+            return {
+                ...state,
+                loading: false,
+                error: null,
+                productos: action.payload
             }
 
         default:
