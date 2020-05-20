@@ -68,7 +68,7 @@ export function obtenerProductosAction() {
         dispatch( descargarProductos() );
 
         try {
-            const respuesta = await clienteAxios.get('/productos');
+            const respuesta = await clienteAxios.get('/asdf');
             dispatch( descargarProductosExitosa( respuesta.data ) );
         } catch (error) {
             console.log( error );
