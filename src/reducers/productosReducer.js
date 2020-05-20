@@ -1,7 +1,10 @@
 import {
     AGREGAR_PRODUCTO,
     AGREGAR_PRODUCTO_EXITO,
-    AGREGAR_PRODUCTO_ERROR
+    AGREGAR_PRODUCTO_ERROR,
+    COMENZAR_DESCARGA_PRODUCTOS,
+    DESCARGA_PRODUCTOS_EXITO,
+    DESCARGA_PRODUCTOS_ERROR
 } from '../types';
 
 
@@ -15,6 +18,7 @@ const initialState = {
 export default function ( state = initialState, action ) {
     switch( action.type ) {
 
+        case COMENZAR_DESCARGA_PRODUCTOS: // ya que las dos actions hacen lo mismo
         case AGREGAR_PRODUCTO: 
             return { // imagina este return como un setState
                 ...state,
