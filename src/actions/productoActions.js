@@ -103,8 +103,18 @@ export function borrarProductoAction( id ) {
         try {
             const resultado = await clienteAxios.delete(`/productos/${ id }`);
             dispatch( eliminarProductoExito() );
+
+            // Si se elimina, mostrar alerta
+            Swal.fire({
+                icon: 'success',
+                title: 'Eliminado!',
+                text: 'El producto se eliminó correctamente.',
+                confirmButtonColor: '#78C2AD',
+                confirmButtonText: 'OK',
+            });
         } catch (error) {
-            
+            console.log( error );
+            dispatch( eliminarProductoError() );
         }
     }
 }
