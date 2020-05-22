@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { editarProductoAction } from '../actions/productoActions';
 
 const EditProduct = () => {
 
@@ -7,6 +8,11 @@ const EditProduct = () => {
     const product = useSelector( state => state.productos.productoEditar );
     if ( !product ) return null; // cuando no venga producto no cargue nada, y no se generen errores
     const { name, price, id } = product;
+
+    const submitEditarProducto = ( event ) => {
+        event.preventDefault();
+        
+    }
 
     return (
         <div className="row justify-content-center">
@@ -17,7 +23,9 @@ const EditProduct = () => {
                             Editar Producto
                         </h2>
 
-                        <form>
+                        <form
+                            onSubmit={ submitEditarProducto }
+                        >
                             <div className="form-group">
                                 <label htmlFor="name">Nombre Producto</label>
                                 <input 

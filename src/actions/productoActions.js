@@ -10,7 +10,8 @@ import {
     PRODUCTO_ELIMINADO_ERROR,
     OBTENER_PRODUCTO_EDITAR,
     PRODUCTO_EDITADO_EXITO,
-    PRODUCTO_EDITADO_ERROR
+    PRODUCTO_EDITADO_ERROR,
+    COMENZAR_EDICION_PRODUCTO
 } from '../types';
 import clienteAxios from '../config/axios';
 import Swal from 'sweetalert2';
@@ -145,5 +146,24 @@ export function obtenerProductoEditarAction( producto ) {
 
 const obtenerProductoEditar = ( producto ) => ({
     type: OBTENER_PRODUCTO_EDITAR,
+    payload: producto
+});
+
+// Edita un producto en la API y State
+export function editarProductoAction( producto ) {
+    return ( dispatch ) => {
+        dispatch( editarProducto( producto ) );
+
+        try {
+            const resultado = await clienteAxios.put(`/productos/${ producto.id }`, producto);
+
+        } catch (error) {
+            
+        }
+    }
+}
+
+const editarProducto = ( producto ) => ({
+    type: COMENZAR_EDICION_PRODUCTO,
     payload: producto
 });
