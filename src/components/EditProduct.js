@@ -1,6 +1,13 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 const EditProduct = () => {
+
+    // producto a editar
+    const product = useSelector( state => state.productos.productoEditar );
+    if ( !product ) return null; // cuando no venga producto no cargue nada, y no se generen errores
+    const { name, price, id } = product;
+
     return (
         <div className="row justify-content-center">
             <div className="col-md-8">
@@ -18,6 +25,7 @@ const EditProduct = () => {
                                     className="form-control"
                                     placeholder="Nombre Producto"
                                     name="name"
+                                    value={ name }
                                 />
                             </div>
 
@@ -28,6 +36,7 @@ const EditProduct = () => {
                                     className="form-control"
                                     placeholder="Precio Producto"
                                     name="price"
+                                    value={ price }
                                 />
                             </div>
 
