@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 // REDUX
@@ -11,6 +11,7 @@ const Product = ({ product }) => {
     const { name, price, id } = product;
 
     const dispatch = useDispatch();
+    const history = useHistory(); // habilitar history para redirección 
 
     // Confirmar si desea eliminarlo
     const confirmarEliminarProducto = ( id ) => {
@@ -32,14 +33,22 @@ const Product = ({ product }) => {
         });
     }
 
+    // Función que redirige de forma programada
+    const redireccionarEdicion = id => {
+        history.push(`/productos/editar/${ id }`);
+    }
+
     return (
         <tr>
             <td>{ name }</td>
             <td><span className="font-weight-bold">$ { price } </span></td>
             <td className="acciones">
-                <Link to={`/productos/editar/${ id }`} className="btn btn-primary mr-2">
+                <button 
+                    type="button"
+                    onClick={ () => redireccionarEdicion( id ) }
+                    className="btn btn-primary mr-2">
                     Editar
-                </Link>
+                </button>
                 <button
                     type="button"
                     className="btn btn-danger"
