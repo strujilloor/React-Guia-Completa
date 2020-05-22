@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 
 // Actions de Redux
-import { crearNuevoProductoAction } from '../actions/productoActions';
+import { crearNuevoProductoAction, agregarProductoError } from '../actions/productoActions';
 
 const NewProduct = ({ history }) => {
 
@@ -26,6 +26,7 @@ const NewProduct = ({ history }) => {
 
         // Validar formulario
         if ( name.trim() === '' || price <= 0 || isNaN( price ) ) {
+            dispatch( agregarProductoError( true ) );
             return;
         }
 
