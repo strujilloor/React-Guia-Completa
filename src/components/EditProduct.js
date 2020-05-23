@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { editarProductoAction } from '../actions/productoActions';
+import { useHistory } from 'react-router-dom'
 
 const EditProduct = () => {
+
+    const history = useHistory();
+    const dispatch = useDispatch();
 
     // Nuevo State de producto
     const [ producto, guardarProducto ] = useState({
         name: '',
         price: ''
     });
-    const { name, price, id } = producto;
+    const { name, price } = producto;
     
     // producto a editar
     const productFromState = useSelector( state => state.productos.productoEditar );
@@ -32,6 +36,10 @@ const EditProduct = () => {
     const submitEditarProducto = ( event ) => {
         event.preventDefault();
         
+        dispatch( editarProductoAction( producto ) )
+            .then( () => {
+                history.push('/');
+            });
     }
     
     if ( !productFromState ) return null; // cuando no venga producto del estado no cargue nada, y no se generen errores
