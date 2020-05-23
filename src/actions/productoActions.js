@@ -151,7 +151,7 @@ const obtenerProductoEditar = ( producto ) => ({
 
 // Edita un producto en la API y State
 export function editarProductoAction( producto ) {
-    return ( dispatch ) => {
+    return async ( dispatch ) => {
         dispatch( editarProducto( producto ) );
 
         try {

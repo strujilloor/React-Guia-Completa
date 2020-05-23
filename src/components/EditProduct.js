@@ -1,19 +1,40 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { editarProductoAction } from '../actions/productoActions';
 
 const EditProduct = () => {
 
+    // Nuevo State de producto
+    const [ producto, guardarProducto ] = useState({
+        name: '',
+        price: ''
+    });
+    const { name, price, id } = producto;
+    
     // producto a editar
-    const product = useSelector( state => state.productos.productoEditar );
-    if ( !product ) return null; // cuando no venga producto no cargue nada, y no se generen errores
-    const { name, price, id } = product;
-
+    const productFromState = useSelector( state => state.productos.productoEditar );
+    
+    // Llenar el State automáticamente
+    useEffect( () => {
+        if (productFromState) {
+            guardarProducto( productFromState );
+        }
+    }, [productFromState] );
+    
+    // Leer los datos del formulario
+    const onChangeForm = ( event ) => {
+        guardarProducto({
+            ...producto,
+            [event.target.name]: event.target.value
+        });
+    }
+    
     const submitEditarProducto = ( event ) => {
         event.preventDefault();
         
     }
-
+    
+    if ( !productFromState ) return null; // cuando no venga producto del estado no cargue nada, y no se generen errores
     return (
         <div className="row justify-content-center">
             <div className="col-md-8">
@@ -34,6 +55,7 @@ const EditProduct = () => {
                                     placeholder="Nombre Producto"
                                     name="name"
                                     value={ name }
+                                    onChange={ onChangeForm }
                                 />
                             </div>
 
@@ -45,6 +67,7 @@ const EditProduct = () => {
                                     placeholder="Precio Producto"
                                     name="price"
                                     value={ price }
+                                    onChange={ onChangeForm }
                                 />
                             </div>
 
