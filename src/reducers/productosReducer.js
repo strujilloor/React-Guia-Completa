@@ -30,7 +30,7 @@ export default function ( state = initialState, action ) {
         case AGREGAR_PRODUCTO: 
             return { // imagina este return como un setState
                 ...state,
-                loading: action.payload // Comienza a cargar la acción de agregar producto
+                loading: true // Comienza a cargar la acción de agregar producto
             }
 
         case AGREGAR_PRODUCTO_EXITO: 

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 
 // Actions de Redux
-import { crearNuevoProductoAction } from '../actions/productoActions';
+import { agregarProducto } from '../actions/productoActions';
 import { MostrarAlertaAction, ocultarAlertaAction } from '../actions/alertaActions';
 
 // Animate.style
@@ -23,7 +23,7 @@ const NewProduct = ({ history }) => {
     const alert = useSelector( state => state.alerta.alerta );
 
     // mandar llamar el action de productoAction
-    const agregarProducto = ( product ) => dispatch( crearNuevoProductoAction( product, history ) );
+    const addProduct = ( product ) => dispatch( agregarProducto( product, history ) );
 
     // Cuando el usuario haga submit
     const submitNuevoProducto = ( event ) => {
@@ -35,15 +35,15 @@ const NewProduct = ({ history }) => {
                 msg: 'Ambos campos son obligatorios',
                 classes: 'alert alert-danger text-center text-uppercase'
             };
-            dispatch( MostrarAlertaAction( respuesta ) );
+            // dispatch( MostrarAlertaAction( respuesta ) );
             return;
         }
 
         // Si no hay errores
-        dispatch( ocultarAlertaAction() );
+        // dispatch( ocultarAlertaAction() );
 
         // Crear el nuevo producto
-        agregarProducto({
+        addProduct({
             name,
             price
         });

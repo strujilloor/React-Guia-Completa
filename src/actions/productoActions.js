@@ -52,13 +52,16 @@ import Swal from 'sweetalert2';
 //     }
 // }
 
-export const agregarProducto = () => ({
+export const agregarProducto = ( producto, history ) => ({
     type: AGREGAR_PRODUCTO,
-    payload: true
+    payload: {
+        producto,
+        history
+    }
 });
 
 // si producto se guarda en la base de datos
-const agregarProductoExito = ( producto ) => ({
+export const agregarProductoExito = ( producto ) => ({
     type: AGREGAR_PRODUCTO_EXITO,
     payload: producto
 });
@@ -69,20 +72,7 @@ export const agregarProductoError = ( estado ) => ({
     payload: estado
 });
 
-// Función que descarga los productos de la base de datos
-// export function obtenerProductosAction() {
-//     return async ( dispatch ) => {
-//         dispatch( descargarProductos() );
 
-//         try {
-//             const respuesta = await clienteAxios.get('/productos');
-//             dispatch( descargarProductosExitosa( respuesta.data ) );
-//         } catch (error) {
-//             console.log( error );
-//             dispatch( descargarProductosError() );
-//         }
-//     }
-// };
 
 export const descargarProductos = () => ({
     type: COMENZAR_DESCARGA_PRODUCTOS,
