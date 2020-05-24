@@ -1,15 +1,21 @@
 import { put, call, takeEvery, all } from 'redux-saga/effects';
-import clienteAxios from '../config/axios';
 import {
     COMENZAR_DESCARGA_PRODUCTOS,
-    AGREGAR_PRODUCTO
+    AGREGAR_PRODUCTO,
+    OBTENER_PRODUCTO_ELIMINAR,
+    COMENZAR_EDICION_PRODUCTO
 } from '../types';
 import {
     descargarProductosExitosa,
     descargarProductosError,
     agregarProductoExito,
-    agregarProductoError
+    agregarProductoError,
+    eliminarProductoExito,
+    eliminarProductoError,
+    editarProductoExito,
+    editarProductoError
 } from '../actions/productoActions';
+import clienteAxios from '../config/axios';
 import Swal from 'sweetalert2';
 
 // Función que descarga los productos de la base de datos
@@ -49,10 +55,49 @@ function* crearNuevoProducto({ payload }) {
     }
 }
 
+// Selecciona y elimina producto
+function* borrarProducto({ payload }) {
+    try {
+        // Elimina de la API
+        const respuesta = yield call( clienteAxios.delete, `/productos/${ payload }` );
+
+        yield put( eliminarProductoExito() );
+
+        // Si se elimina, mostrar alerta
+        Swal.fire({
+            icon: 'success',
+            title: 'Eliminado!',
+            text: 'El producto se eliminó correctamente.',
+            confirmButtonColor: '#78C2AD',
+            confirmButtonText: 'OK',
+        });
+    } catch (error) {
+        console.log( error );
+        yield put( eliminarProductoError() ); // state error pasa a ser true
+    }
+}
+
+// Edita un producto en la API y State
+function* editarUnProducto({ payload }) {
+    try {
+        yield call( clienteAxios.put, `/productos/${ payload.producto.id }`, payload.producto );
+        yield put( editarProductoExito( payload.producto ) );
+
+        // Redireccionar
+        payload.history.push('/');
+    } catch (error) {
+        console.log( error );
+        yield put( editarProductoError() );
+    }
+}
+
+
 // Watchers
 export default function* productos(){
     yield all([
         takeEvery( COMENZAR_DESCARGA_PRODUCTOS, obtenerProductos ),
-        takeEvery( AGREGAR_PRODUCTO, crearNuevoProducto )
+        takeEvery( AGREGAR_PRODUCTO, crearNuevoProducto ),
+        takeEvery( OBTENER_PRODUCTO_ELIMINAR, borrarProducto ),
+        takeEvery( COMENZAR_EDICION_PRODUCTO, editarUnProducto )
     ]);
 }

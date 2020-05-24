@@ -4,7 +4,7 @@ import Swal from 'sweetalert2';
 
 // REDUX
 import { useDispatch } from 'react-redux'
-import { borrarProductoAction, obtenerProductoEditarAction } from '../actions/productoActions'
+import { obtenerProductoEliminar, obtenerProductoEditar } from '../actions/productoActions'
 
 const Product = ({ product }) => {
 
@@ -28,14 +28,14 @@ const Product = ({ product }) => {
         }).then((result) => {
             if (result.value) {
                 // Pasarlo al Action
-                dispatch( borrarProductoAction( id ) );
+                dispatch( obtenerProductoEliminar( id ) );
             }
         });
     }
 
     // Función que redirige de forma programada
     const redireccionarEdicion = producto => {
-        dispatch( obtenerProductoEditarAction( producto ) )
+        dispatch( obtenerProductoEditar( producto ) )
         history.push(`/productos/editar/${ producto.id }`);
     }
 

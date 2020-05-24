@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { editarProductoAction } from '../actions/productoActions';
+import { editarProducto } from '../actions/productoActions';
 import { mostrarAlerta, ocultarAlerta } from '../actions/alertaActions';
 import { useHistory } from 'react-router-dom'
 
@@ -54,12 +54,7 @@ const EditProduct = () => {
             return;
         }
         
-        dispatch( editarProductoAction( producto ) )
-            .then( () => {
-                // Si no hay errores
-                dispatch( ocultarAlerta() );
-                history.push('/');
-            });
+        dispatch( editarProducto( producto, history ) );
     }
     
     if ( !productFromState ) return null; // cuando no venga producto del estado no cargue nada, y no se generen errores
