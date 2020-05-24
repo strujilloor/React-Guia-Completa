@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 
 // Actions de Redux
-import { crearNuevoProductoAction, agregarProductoError } from '../actions/productoActions';
+import { crearNuevoProductoAction } from '../actions/productoActions';
+import { MostrarAlertaAction } from '../actions/alertaActions';
 
 const NewProduct = ({ history }) => {
 
@@ -26,7 +27,11 @@ const NewProduct = ({ history }) => {
 
         // Validar formulario
         if ( name.trim() === '' || price <= 0 || isNaN( price ) ) {
-            dispatch( agregarProductoError( true ) );
+            const respuesta = {
+                msg: 'Ambos campos son obligatorios',
+                classes: 'alert alert-danger text-center text-uppercase'
+            };
+            dispatch( MostrarAlertaAction( respuesta ) );
             return;
         }
 
