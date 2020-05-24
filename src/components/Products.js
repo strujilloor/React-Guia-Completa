@@ -3,7 +3,7 @@ import Product from '../components/Product';
 
 // Redux
 import { useSelector, useDispatch } from 'react-redux'
-import { obtenerProductosAction } from '../actions/productoActions';
+import { descargarProductos } from '../actions/productoActions';
 
 const Products = () => {
 
@@ -12,7 +12,7 @@ const Products = () => {
     useEffect(() => {
         
         // Consultar la API
-        const cargarProductos = () => dispatch( obtenerProductosAction(  ) );
+        const cargarProductos = () => dispatch( descargarProductos() );
         cargarProductos();
 
         // eslint-disable-next-line

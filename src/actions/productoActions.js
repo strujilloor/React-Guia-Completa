@@ -17,42 +17,42 @@ import clienteAxios from '../config/axios';
 import Swal from 'sweetalert2';
 
 // Crear nuevos productos
-export function crearNuevoProductoAction( producto, history ) {
-    return async ( dispatch ) => {
-        dispatch( agregarProducto() );
+// REDUX-THUNK export function crearNuevoProductoAction( producto, history ) {
+//     return async ( dispatch ) => {
+//         dispatch( agregarProducto() );
 
-        try {
-            // Insertar en la API
-            await clienteAxios.post( '/productos', producto );
+//         try {
+//             // Insertar en la API
+//             await clienteAxios.post( '/productos', producto );
 
-            // Sí todo sale bien, actualizar el State
-            dispatch( agregarProductoExito( producto ) );
+//             // Sí todo sale bien, actualizar el State
+//             dispatch( agregarProductoExito( producto ) );
 
-            // Alerta
-            Swal.fire(
-                'Correcto',
-                'El producto se agregó correctamente',
-                'success'
-            );
+//             // Alerta
+//             Swal.fire(
+//                 'Correcto',
+//                 'El producto se agregó correctamente',
+//                 'success'
+//             );
 
-            // Redireccionar
-            history.push('/');
-        } catch ( error ) {
-            console.log( error );
-            // Sí hay un error, cambiar el State
-            dispatch( agregarProductoError( true ) );
+//             // Redireccionar
+//             history.push('/');
+//         } catch ( error ) {
+//             console.log( error );
+//             // Sí hay un error, cambiar el State
+//             dispatch( agregarProductoError( true ) );
 
-            // Alerta Error
-            Swal.fire({
-                icon: 'error',
-                title: 'Hubo un error',
-                text: 'Hubo un error, intente de nuevo'
-            });
-        }
-    }
-}
+//             // Alerta Error
+//             Swal.fire({
+//                 icon: 'error',
+//                 title: 'Hubo un error',
+//                 text: 'Hubo un error, intente de nuevo'
+//             });
+//         }
+//     }
+// }
 
-const agregarProducto = () => ({
+export const agregarProducto = () => ({
     type: AGREGAR_PRODUCTO,
     payload: true
 });
@@ -70,31 +70,31 @@ export const agregarProductoError = ( estado ) => ({
 });
 
 // Función que descarga los productos de la base de datos
-export function obtenerProductosAction() {
-    return async ( dispatch ) => {
-        dispatch( descargarProductos() );
+// export function obtenerProductosAction() {
+//     return async ( dispatch ) => {
+//         dispatch( descargarProductos() );
 
-        try {
-            const respuesta = await clienteAxios.get('/productos');
-            dispatch( descargarProductosExitosa( respuesta.data ) );
-        } catch (error) {
-            console.log( error );
-            dispatch( descargarProductosError() );
-        }
-    }
-};
+//         try {
+//             const respuesta = await clienteAxios.get('/productos');
+//             dispatch( descargarProductosExitosa( respuesta.data ) );
+//         } catch (error) {
+//             console.log( error );
+//             dispatch( descargarProductosError() );
+//         }
+//     }
+// };
 
-const descargarProductos = () => ({
+export const descargarProductos = () => ({
     type: COMENZAR_DESCARGA_PRODUCTOS,
     payload: true
 });
 
-const descargarProductosExitosa = ( productos ) =>({
+export const descargarProductosExitosa = ( productos ) =>({
     type: DESCARGA_PRODUCTOS_EXITO,
     payload: productos
 });
 
-const descargarProductosError = () =>({
+export const descargarProductosError = () =>({
     type: DESCARGA_PRODUCTOS_ERROR,
     payload: true
 });
