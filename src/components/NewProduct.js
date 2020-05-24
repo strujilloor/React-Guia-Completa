@@ -17,6 +17,7 @@ const NewProduct = ({ history }) => {
     // Acceder al State del Store
     const cargando = useSelector( state => state.productos.loading );
     const error = useSelector( state => state.productos.error );
+    const alert = useSelector( state => state.alerta.alerta );
 
     // mandar llamar el action de productoAction
     const agregarProducto = ( product ) => dispatch( crearNuevoProductoAction( product, history ) );
@@ -55,6 +56,8 @@ const NewProduct = ({ history }) => {
                         <h2 className="text-center mb-4 font-weight-bold">
                             Agregar Producto
                         </h2>
+
+                        { alert ? <p className={ alert.classes }>{ alert.msg }</p> : null }
 
                         <form onSubmit={ submitNuevoProducto }>
                             <div className="form-group">
