@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { editarProductoAction } from '../actions/productoActions';
+import { MostrarAlertaAction, ocultarAlertaAction } from '../actions/alertaActions';
 import { useHistory } from 'react-router-dom'
 
 const EditProduct = () => {
@@ -17,6 +18,8 @@ const EditProduct = () => {
     
     // producto a editar
     const productFromState = useSelector( state => state.productos.productoEditar );
+
+    const alert = useSelector( state => state.alerta.alerta );
     
     // Llenar el State automáticamente
     useEffect( () => {
@@ -40,9 +43,21 @@ const EditProduct = () => {
     
     const submitEditarProducto = ( event ) => {
         event.preventDefault();
+
+        // Validar formulario
+        if ( name.trim() === '' || price <= 0 || isNaN( price ) ) {
+            const respuesta = {
+                msg: 'Ambos campos son obligatorios',
+                classes: 'alert alert-danger text-center text-uppercase'
+            };
+            dispatch( MostrarAlertaAction( respuesta ) );
+            return;
+        }
         
         dispatch( editarProductoAction( producto ) )
             .then( () => {
+                // Si no hay errores
+                dispatch( ocultarAlertaAction() );
                 history.push('/');
             });
     }
@@ -56,6 +71,8 @@ const EditProduct = () => {
                         <h2 className="text-center mb-4 font-weight-bold">
                             Editar Producto
                         </h2>
+
+                        { alert ? <p className={ `animate__animated animate__headShake ${alert.classes}` }>{ alert.msg }</p> : null }
 
                         <form
                             onSubmit={ submitEditarProducto }
