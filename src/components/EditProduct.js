@@ -27,9 +27,14 @@ const EditProduct = () => {
     
     // Leer los datos del formulario
     const onChangeForm = ( event ) => {
+
+        const value = ( event.target.name === 'price' ) 
+            ? parseInt( event.target.value ) 
+            : event.target.value;
+
         guardarProducto({
             ...producto,
-            [event.target.name]: event.target.value
+            [event.target.name]: value
         });
     }
     
