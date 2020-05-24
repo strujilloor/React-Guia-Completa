@@ -5,6 +5,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { crearNuevoProductoAction } from '../actions/productoActions';
 import { MostrarAlertaAction, ocultarAlertaAction } from '../actions/alertaActions';
 
+// Animate.style
+import 'animate.css/animate.min.css'
+
 const NewProduct = ({ history }) => {
 
     // State del componente
@@ -58,7 +61,7 @@ const NewProduct = ({ history }) => {
                             Agregar Producto
                         </h2>
 
-                        { alert ? <p className={ alert.classes }>{ alert.msg }</p> : null }
+                        { alert ? <p className={ `animate__animated animate__headShake ${alert.classes}` }>{ alert.msg }</p> : null }
 
                         <form onSubmit={ submitNuevoProducto }>
                             <div className="form-group">
