@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 // Actions de Redux
 import { agregarProducto } from '../actions/productoActions';
-import { MostrarAlertaAction, ocultarAlertaAction } from '../actions/alertaActions';
+import { mostrarAlerta, ocultarAlerta } from '../actions/alertaActions';
 
 // Animate.style
 import 'animate.css/animate.min.css'
@@ -35,12 +35,12 @@ const NewProduct = ({ history }) => {
                 msg: 'Ambos campos son obligatorios',
                 classes: 'alert alert-danger text-center text-uppercase'
             };
-            // dispatch( MostrarAlertaAction( respuesta ) );
+            dispatch( mostrarAlerta( respuesta ) );
             return;
         }
 
         // Si no hay errores
-        // dispatch( ocultarAlertaAction() );
+        dispatch( ocultarAlerta() );
 
         // Crear el nuevo producto
         addProduct({

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { editarProductoAction } from '../actions/productoActions';
-import { MostrarAlertaAction, ocultarAlertaAction } from '../actions/alertaActions';
+import { mostrarAlerta, ocultarAlerta } from '../actions/alertaActions';
 import { useHistory } from 'react-router-dom'
 
 const EditProduct = () => {
@@ -50,14 +50,14 @@ const EditProduct = () => {
                 msg: 'Ambos campos son obligatorios',
                 classes: 'alert alert-danger text-center text-uppercase'
             };
-            dispatch( MostrarAlertaAction( respuesta ) );
+            dispatch( mostrarAlerta( respuesta ) );
             return;
         }
         
         dispatch( editarProductoAction( producto ) )
             .then( () => {
                 // Si no hay errores
-                dispatch( ocultarAlertaAction() );
+                dispatch( ocultarAlerta() );
                 history.push('/');
             });
     }
