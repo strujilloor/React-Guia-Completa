@@ -59,7 +59,7 @@ function* crearNuevoProducto({ payload }) {
 function* borrarProducto({ payload }) {
     try {
         // Elimina de la API
-        const respuesta = yield call( clienteAxios.delete, `/productos/${ payload }` );
+        yield call( clienteAxios.delete, `/productos/${ payload }` );
 
         yield put( eliminarProductoExito() );
 

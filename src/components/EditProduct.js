@@ -53,7 +53,7 @@ const EditProduct = () => {
             dispatch( mostrarAlerta( respuesta ) );
             return;
         }
-        
+        dispatch( ocultarAlerta() );
         dispatch( editarProducto( producto, history ) );
     }
     
