@@ -1,16 +1,14 @@
-import Head from 'next/head'
+import Head from 'next/head';
+import styled from '@emotion/styled'
+
+const Heading = styled.h1`
+  color: blue;
+`;
 
 export default function Home() {
   return (
     <div>
-      <h1>Inicio</h1>
-
-      {/* CSS dentro de JS */}
-      <style jsx>{`
-          h1 {
-            color: red;
-          }
-      `}</style>
+      <Heading>Inicio</Heading>
     </div>
   )
 }

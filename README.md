@@ -62,6 +62,13 @@ Un framework sencillo para crear aplicaciones React con SSR.
 - Firebase Hosting
 - Google Forms
 - PayPal
+___
+
+## Agregando Emotion a un Proyecto Next.js
+
+```
+yarn add @emotion/core  @emotion/styled babel-plugin-emotion @emotion/babel-preset-css-prop
+```
 
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
